@@ -1,0 +1,45 @@
+<Window icon="@application_form.png" title="%titulo"
+	xmlns:bxml="http://pivot.apache.org/bxml" xmlns:content="org.apache.pivot.wtk.content"
+	xmlns="org.apache.pivot.wtk" maximized="true">
+
+	<actionMappings>
+		<Window.ActionMapping action="abrirLancamentos"
+			keyStroke="CMD-L" />
+		<Window.ActionMapping action="abrirCategorias"
+			keyStroke="CMD-C" />
+		<Window.ActionMapping action="sair" keyStroke="CMD-S" />
+	</actionMappings>
+
+	<Border styles="{padding:6, color:'#999999'}">
+		<BoxPane bxml:id="boxPane" orientation="horizontal">
+			<MenuBar>
+				<MenuBar.Item buttonData="%men_opcoes">
+					<Menu>
+						<Menu.Section>
+							<Menu.Item action="abrirLancamentos">
+								<buttonData>
+									<content:MenuItemData text="%men_opcoes_lancamentos"
+										keyboardShortcut="CMD-L" />
+								</buttonData>
+							</Menu.Item>
+
+							<Menu.Item action="abrirCategorias">
+								<buttonData>
+									<content:MenuItemData text="%men_opcoes_categorias"
+										keyboardShortcut="CMD-C" />
+								</buttonData>
+							</Menu.Item>
+
+							<Menu.Item action="sair">
+								<buttonData>
+									<content:MenuItemData text="%men_opcoes_sair"
+										keyboardShortcut="CMD-S" />
+								</buttonData>
+							</Menu.Item>
+						</Menu.Section>
+					</Menu>
+				</MenuBar.Item>
+			</MenuBar>
+		</BoxPane>
+	</Border>
+</Window>

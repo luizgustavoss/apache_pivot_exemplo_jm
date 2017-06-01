@@ -1,0 +1,180 @@
+<jm:LancamentoFrm icon="@application_form.png" title="%titulo"
+	xmlns:bxml="http://pivot.apache.org/bxml" xmlns:content="org.apache.pivot.wtk.content"
+	xmlns="org.apache.pivot.wtk" xmlns:collections="org.apache.pivot.collections"
+	preferredWidth="750" preferredHeight="550" xmlns:jm="jm.pivot.app.controle"
+	maximized="false"
+	styles="{padding:{top:5, left:5, bottom:5, right:5}, showWindowControls:true, showMinimizeButton:false}">
+	<actionMappings>
+		<Window.ActionMapping action="salvarAction"
+			keyStroke="CMD-S" />
+		<Window.ActionMapping action="cancelarAction"
+			keyStroke="CMD-C" />
+		<Window.ActionMapping action="pesquisarAction"
+			keyStroke="CMD-P" />
+	</actionMappings>
+	<TabPane bxml:id="tabPane">
+		<Border styles="{padding:10}" TabPane.tabData="%tabDetalhes">
+			<TablePane>
+				<columns>
+					<TablePane.Column width="1*" />
+				</columns>
+				<TablePane.Row height="350">
+					<Form>
+						<Form.Section>
+							<TextInput Form.label="%lblDescricao" textSize="40"
+								bxml:id="descricao" />
+							<BoxPane styles="{verticalAlignment:'center'}" bxml:id="valorBox"
+								Form.label="%lblValor">
+								<TextInput textSize="10" bxml:id="valor" />
+								<Checkbox buttonData="%lblConciliado" bxml:id="conciliado"
+									ButtonPressListener.buttonPressed="conciliadoImg.setVisible(conciliado.isSelected());" />
+								<ImageView bxml:id="conciliadoImg" image="@conciliado.png"
+									visible="false" />
+							</BoxPane>
+							<CalendarButton bxml:id="data" Form.label="%lblData" />
+							<BoxPane Form.label="%lblTipo" orientation="horizontal"
+								styles="{padding:4}">
+								<bxml:define>
+									<ButtonGroup bxml:id="tipos" />
+								</bxml:define>
+								<RadioButton bxml:id="despesaButton" buttonGroup="$tipos"
+									selected="true">
+									<content:ButtonData icon="@despesa.png"
+										text="%lblDespesa" />
+								</RadioButton>
+								<RadioButton bxml:id="receitaButton" buttonGroup="$tipos">
+									<content:ButtonData icon="@receita.png"
+										text="%lblReceita" />
+								</RadioButton>
+							</BoxPane>
+							<ListButton bxml:id="categoria" Form.label="%lblCategoria" />
+							<BoxPane Form.label="%lblObservacoes">
+								<Border styles="{color:10}">
+									<ScrollPane horizontalScrollBarPolicy="fill"
+										verticalScrollBarPolicy="fill_to_capacity" preferredHeight="200"
+										preferredWidth="500">
+										<TextArea bxml:id="observacoes" />
+									</ScrollPane>
+								</Border>
+							</BoxPane>
+						</Form.Section>
+					</Form>
+				</TablePane.Row>
+				<TablePane.Row height="40">
+					<TablePane>
+						<columns>
+							<TablePane.Column width="1*" />
+						</columns>
+						<TablePane.Row>
+							<BoxPane
+								styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
+								<PushButton bxml:id="salvarButton" styles="{minimumAspectRatio:3}"
+									action="salvarAction">
+									<content:ButtonData text="%btnSalvar" icon="@salvar.gif" />
+								</PushButton>
+								<PushButton bxml:id="cancelarButton" styles="{minimumAspectRatio:3}"
+									action="cancelarAction">
+									<content:ButtonData text="%btnCancelar"
+										icon="@cancelar.gif" />
+								</PushButton>
+							</BoxPane>
+						</TablePane.Row>
+					</TablePane>
+				</TablePane.Row>
+			</TablePane>
+		</Border>
+		<Border styles="{padding:10}" TabPane.tabData="%tabPesquisa">
+			<TablePane>
+				<columns>
+					<TablePane.Column width="1*" />
+				</columns>
+				<TablePane.Row height="135">
+					<Form>
+						<Form.Section>
+							<TextInput Form.label="%lblDescricao" textSize="40"
+								bxml:id="descricaoPesq" />
+							<BoxPane Form.label="%lblPeriodo" orientation="horizontal"
+								styles="{padding:4}">
+								<CalendarButton bxml:id="dataDe" />
+								<Label text="%lblA" />
+								<CalendarButton bxml:id="dataAte" />
+							</BoxPane>
+							<BoxPane Form.label="%lblTipo" orientation="horizontal"
+								styles="{padding:4}">
+								<bxml:define>
+									<ButtonGroup bxml:id="tiposPesq" />
+								</bxml:define>
+								<RadioButton bxml:id="despesaButtonPesq"
+									buttonGroup="$tiposPesq" selected="true">
+									<content:ButtonData icon="@despesa.png"
+										text="%lblDespesa" />
+								</RadioButton>
+								<RadioButton bxml:id="receitaButtonPesq"
+									buttonGroup="$tiposPesq">
+									<content:ButtonData icon="@receita.png"
+										text="%lblReceita" />
+								</RadioButton>
+								<RadioButton bxml:id="todosButtonPesq" buttonGroup="$tiposPesq">
+									<content:ButtonData text="%lblTodos" />
+								</RadioButton>
+							</BoxPane>
+							<ListButton bxml:id="categoriaPesq" Form.label="%lblCategoria" />
+						</Form.Section>
+					</Form>
+				</TablePane.Row>
+				<TablePane.Row height="40">
+					<TablePane>
+						<columns>
+							<TablePane.Column width="1*" />
+						</columns>
+						<TablePane.Row>
+							<BoxPane
+								styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
+								<PushButton bxml:id="pesquisarButton" styles="{minimumAspectRatio:3}"
+									action="pesquisarAction">
+									<content:ButtonData text="%btnPesquisar"
+										icon="@pesquisar.png" />
+								</PushButton>
+							</BoxPane>
+						</TablePane.Row>
+					</TablePane>
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					<Border>
+						<ScrollPane>
+							<TableView bxml:id="lancamentosPesquisaView">
+								<columns>
+									<TableView.Column name="data" width="80"
+										headerData="%clnData" />
+									<TableView.Column name="valor" width="100"
+										headerData="%clnValor" />
+									<TableView.Column name="descricao" width="290"
+										headerData="%clnDescricao" />
+									<TableView.Column name="tipoImg" width="40"
+										headerData="%clnTipo">
+										<cellRenderer>
+											<content:TableViewImageCellRenderer />
+										</cellRenderer>
+									</TableView.Column>
+									<TableView.Column name="conciliadoImg" width="70"
+										headerData="%clnConciliado">
+										<cellRenderer>
+											<content:TableViewImageCellRenderer />
+										</cellRenderer>
+									</TableView.Column>
+									<TableView.Column name="saldo" width="120"
+										headerData="%clnSaldo" />
+									<TableView.Column name="saldoConciliar" width="120"
+										headerData="%clnSaldoConciliar" />
+								</columns>
+							</TableView>
+							<columnHeader>
+								<TableViewHeader tableView="$lancamentosPesquisaView" />
+							</columnHeader>
+						</ScrollPane>
+					</Border>
+				</TablePane.Row>
+			</TablePane>
+		</Border>
+	</TabPane>
+</jm:LancamentoFrm>

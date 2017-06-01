@@ -1,0 +1,98 @@
+<jm:CategoriaFrm icon="@application_form.png" title="%titulo"
+	xmlns:bxml="http://pivot.apache.org/bxml" xmlns:content="org.apache.pivot.wtk.content"
+	xmlns="org.apache.pivot.wtk" xmlns:collections="org.apache.pivot.collections"
+	preferredWidth="600" preferredHeight="500" xmlns:jm="jm.pivot.app.controle"
+	maximized="false"
+	styles="{padding:{top:5, left:5, bottom:5, right:5}, showWindowControls:true, showMinimizeButton:false}">
+
+	<actionMappings>
+		<Window.ActionMapping action="salvarAction"
+			keyStroke="CMD-S" />
+		<Window.ActionMapping action="cancelarAction"
+			keyStroke="CMD-C" />
+	</actionMappings>
+
+	<Border styles="{padding:10}">
+		<TablePane>
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+
+			<TablePane.Row height="80">
+				<Form>
+					<Form.Section>
+
+						<TextInput Form.label="%lblDescricao" textSize="40"
+							bxml:id="descricao" />
+
+						<BoxPane Form.label="%lblTipo" orientation="horizontal"
+							styles="{padding:4}">
+
+							<bxml:define>
+								<ButtonGroup bxml:id="tipos" />
+							</bxml:define>
+							<RadioButton bxml:id="despesaButton" buttonGroup="$tipos"
+								selected="true">
+								<content:ButtonData icon="@despesa.png" text="%lblDespesa" />
+							</RadioButton>
+							<RadioButton bxml:id="receitaButton" buttonGroup="$tipos">
+								<content:ButtonData icon="@receita.png" text="%lblReceita" />
+							</RadioButton>
+
+						</BoxPane>
+					</Form.Section>
+				</Form>
+			</TablePane.Row>
+
+			<TablePane.Row height="40">
+				<TablePane>
+					<columns>
+						<TablePane.Column width="1*" />
+					</columns>
+
+					<TablePane.Row>
+						<BoxPane
+							styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
+							<PushButton bxml:id="salvarButton" styles="{minimumAspectRatio:3}"
+								action="salvarAction">
+								<content:ButtonData text="%btnSalvar" icon="@salvar.gif" />
+							</PushButton>
+							<PushButton bxml:id="cancelarButton" styles="{minimumAspectRatio:3}"
+								action="cancelarAction">
+								<content:ButtonData text="%btnCancelar" icon="@cancelar.gif" />
+							</PushButton>
+						</BoxPane>
+					</TablePane.Row>
+				</TablePane>
+			</TablePane.Row>
+
+
+			<TablePane.Row height="1*">
+
+				<Border>
+					<ScrollPane>
+						<TableView bxml:id="categoriasView">
+							<columns>
+								<TableView.Column name="descricao" width="470"
+									headerData="%clnDescricao" />
+								<TableView.Column name="tipoImg" width="80"
+									headerData="%clnTipo">
+									<cellRenderer>
+										<content:TableViewImageCellRenderer />
+									</cellRenderer>
+								</TableView.Column>
+							</columns>
+						</TableView>
+						<columnHeader>
+							<TableViewHeader tableView="$categoriasView" />
+						</columnHeader>
+					</ScrollPane>
+				</Border>
+
+			</TablePane.Row>
+
+		</TablePane>
+	</Border>
+
+
+</jm:CategoriaFrm>
